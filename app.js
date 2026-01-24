@@ -2,8 +2,9 @@
 // Recipe Builder Logic
 // ===============================
 
-// LocalStorage
+// Load saved recipes
 let recipeLibrary = JSON.parse(localStorage.getItem("recipeLibrary")) || [];
+
 function saveRecipeLibrary() {
     localStorage.setItem("recipeLibrary", JSON.stringify(recipeLibrary));
 }
@@ -27,8 +28,8 @@ function addIngredientRow() {
 // Auto-expand directions textarea
 function autoExpandDirections() {
     const el = document.getElementById("recipe-directions");
-    el.style.height = "auto";
-    el.style.height = el.scrollHeight + "px";
+    el.style.height = "auto";                // Reset height
+    el.style.height = el.scrollHeight + "px"; // Expand to fit content
 }
 
 // Save recipe
@@ -88,10 +89,13 @@ function renderRecipeList() {
 // Event Listeners
 document.getElementById("recipe-add-ingredient").addEventListener("click", addIngredientRow);
 document.getElementById("recipe-save").addEventListener("click", saveRecipe);
+
+// Attach auto-expanding behavior
 document.getElementById("recipe-directions").addEventListener("input", autoExpandDirections);
 
 // Initial load
 addIngredientRow();
 renderRecipeList();
+
 
 
