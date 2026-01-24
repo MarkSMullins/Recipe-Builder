@@ -1,10 +1,10 @@
-// recipe-service-worker.js.txt
+// service-worker.js.txt
 
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open("recipe-cache-v1").then(cache => {
       return cache.addAll([
-        "recipe-index.html",
+        "index.html",
         "recipe-style.css",
         "recipe-app.js",
         "recipe-manifest.json"
@@ -18,3 +18,4 @@ self.addEventListener("fetch", event => {
     caches.match(event.request).then(resp => resp || fetch(event.request))
   );
 });
+
