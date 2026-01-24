@@ -1,5 +1,5 @@
 // ===============================
-// Recipe Builder Starter Logic
+// Recipe Builder Logic
 // ===============================
 
 // LocalStorage
@@ -24,11 +24,20 @@ function addIngredientRow() {
     container.appendChild(row);
 }
 
+// Auto-expand directions textarea
+function autoExpandDirections() {
+    const el = document.getElementById("recipe-directions");
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + "px";
+}
+
 // Save recipe
 function saveRecipe() {
     const name = document.getElementById("recipe-name").value.trim();
     const yieldVal = document.getElementById("recipe-yield").value.trim();
+    const yieldUnit = document.getElementById("recipe-yield-unit").value.trim();
     const prep = document.getElementById("recipe-prep").value.trim();
+    const prepUnit = document.getElementById("recipe-prep-unit").value.trim();
     const directions = document.getElementById("recipe-directions").value.trim();
 
     if (!name) {
@@ -45,7 +54,9 @@ function saveRecipe() {
     const recipe = {
         name,
         yield: yieldVal,
+        yieldUnit,
         prep,
+        prepUnit,
         ingredients,
         directions
     };
@@ -68,7 +79,6 @@ function renderRecipeList() {
 
         li.addEventListener("click", () => {
             alert(`Load recipe: ${recipe.name}`);
-            // Placeholder for future load logic
         });
 
         list.appendChild(li);
@@ -78,8 +88,10 @@ function renderRecipeList() {
 // Event Listeners
 document.getElementById("recipe-add-ingredient").addEventListener("click", addIngredientRow);
 document.getElementById("recipe-save").addEventListener("click", saveRecipe);
+document.getElementById("recipe-directions").addEventListener("input", autoExpandDirections);
 
 // Initial load
 addIngredientRow();
 renderRecipeList();
+
 
