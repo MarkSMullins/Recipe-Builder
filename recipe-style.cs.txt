@@ -1,0 +1,95 @@
+/*  recipe-style.cs */
+
+/* ============================
+   Recipe Builder Styles
+   ============================ */
+
+#recipe-builder {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f5f5f5;
+    padding-bottom: 40px;
+}
+
+#recipe-builder h1 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.6rem;
+}
+
+.recipe-section {
+    background: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.recipe-label {
+    font-weight: bold;
+}
+
+.recipe-input {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.recipe-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+#recipe-ingredients .ingredient-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+#recipe-directions {
+    width: 100%;
+    min-height: 120px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    resize: vertical;
+}
+
+.recipe-button {
+    width: 100%;
+    padding: 10px;
+    background: #0078d4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.recipe-button:hover {
+    background: #005fa3;
+}
+
+.recipe-button.save {
+    background: #228b22;
+}
+
+.recipe-button.save:hover {
+    background: #176b16;
+}
+
+#recipe-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+#recipe-list li:hover {
+    background: #e9f3ff;
+}

@@ -1,0 +1,82 @@
+  <!-- recipe-index.html.txt ' ' ' https://github.com/MarkSMullins/Recipe-Builder.git-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Builder</title>
+
+  <link rel="stylesheet" href="recipe-style.css" />
+  <link rel="manifest" href="recipe-manifest.json" />
+  <meta name="theme-color" content="#4CAF50" />
+</head>
+
+<body>
+
+<div id="recipe-builder">
+
+  <h1>Recipe Builder</h1>
+
+  <!-- Recipe Header -->
+  <section class="recipe-section">
+    <label for="recipe-name" class="recipe-label">Recipe Name:</label>
+    <input id="recipe-name" type="text" class="recipe-input" />
+
+    <div class="recipe-row">
+      <div>
+        <label for="recipe-yield">Yield:</label>
+        <input id="recipe-yield" type="text" class="recipe-input" />
+      </div>
+
+      <div>
+        <label for="recipe-prep">Prep Time:</label>
+        <input id="recipe-prep" type="text" class="recipe-input" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Ingredients -->
+  <section class="recipe-section">
+    <h2>Ingredients</h2>
+
+    <div id="recipe-ingredients"></div>
+
+    <button id="recipe-add-ingredient" class="recipe-button">
+      Add Another Ingredient
+    </button>
+  </section>
+
+  <!-- Directions -->
+  <section class="recipe-section">
+    <h2>Directions</h2>
+    <textarea id="recipe-directions" placeholder="Enter directions..."></textarea>
+  </section>
+
+  <!-- Save Recipe -->
+  <section class="recipe-section">
+    <button id="recipe-save" class="recipe-button save">
+      Save Recipe
+    </button>
+  </section>
+
+  <!-- Recipe Library -->
+  <section class="recipe-section">
+    <h2>Saved Recipes</h2>
+    <ul id="recipe-list"></ul>
+  </section>
+
+</div>
+
+<script src="recipe-app.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("recipe-service-worker.js")
+      .then(() => console.log("Recipe Builder Service Worker registered"))
+      .catch(err => console.error("SW registration failed:", err));
+  }
+</script>
+
+</body>
+</html>
