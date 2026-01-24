@@ -57,7 +57,8 @@
     border-radius: 5px;
     border: 1px solid #ccc;
     resize: none;
-    overflow: hidden;
+    overflow-y: hidden;
+    height: auto;
 }
 
 .recipe-button {
@@ -92,4 +93,5 @@
 #recipe-list li:hover {
     background: #e9f3ff;
 }
+
 
