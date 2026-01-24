@@ -1,5 +1,3 @@
-// recipe-app.js
-
 // ===============================
 // Recipe Builder Starter Logic
 // ===============================
@@ -84,3 +82,4 @@ document.getElementById("recipe-save").addEventListener("click", saveRecipe);
 // Initial load
 addIngredientRow();
 renderRecipeList();
+
