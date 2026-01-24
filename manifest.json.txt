@@ -3,9 +3,10 @@
 {
   "name": "Recipe Builder",
   "short_name": "Recipes",
-  "start_url": "recipe-index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#4CAF50",
   "icons": []
 }
+
