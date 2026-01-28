@@ -48,7 +48,7 @@ function openFoodPicker(targetRow) {
 
         li.addEventListener("click", () => {
             targetRow.querySelector(".ingredient-name").value = food.name;
-            targetRow.querySelector(".ingredient-unit").value = "g";
+            targetRow.querySelector(".ingredient-unit").value = ""; // unit already embedded in name
             targetRow.querySelector(".ingredient-amount").value = 1;
 
             // Store food data on the row
@@ -135,6 +135,7 @@ document.getElementById("recipe-save").addEventListener("click", saveRecipe);
 // Initial load
 addIngredientRow();
 renderRecipeList();
+
 
 
 
