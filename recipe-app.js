@@ -24,6 +24,7 @@ function addIngredientRow() {
         <input type="text" placeholder="Unit" class="recipe-input ingredient-unit" />
         <input type="number" placeholder="Amount" class="recipe-input ingredient-amount" />
         <button class="pick-food-button">Pick</button>
+        <div class="ingredient-nutrition"></div>
     `;
 
     // Add event listener for the Pick button
@@ -49,6 +50,13 @@ function openFoodPicker(targetRow) {
             targetRow.querySelector(".ingredient-name").value = food.name;
             targetRow.querySelector(".ingredient-unit").value = "g";
             targetRow.querySelector(".ingredient-amount").value = 1;
+
+            // Store food data on the row
+            targetRow.dataset.food = JSON.stringify(food);
+
+            // Show nutrition info
+            const info = `${food.calories} cal, ${food.fat}g fat, ${food.carbs}g carbs`;
+            targetRow.querySelector(".ingredient-nutrition").textContent = info;
 
             popup.classList.remove("visible");
         });
@@ -76,11 +84,17 @@ function saveRecipe() {
         return;
     }
 
-    const ingredients = [...document.querySelectorAll(".ingredient-row")].map(row => ({
-        name: row.querySelector(".ingredient-name").value.trim(),
-        unit: row.querySelector(".ingredient-unit").value.trim(),
-        amount: row.querySelector(".ingredient-amount").value.trim()
-    }));
+    const ingredients = [...document.querySelectorAll(".ingredient-row")].map(row => {
+        const food = row.dataset.food ? JSON.parse(row.dataset.food) : null;
+        return {
+            name: row.querySelector(".ingredient-name").value.trim(),
+            unit: row.querySelector(".ingredient-unit").value.trim(),
+            amount: row.querySelector(".ingredient-amount").value.trim(),
+            calories: food ? food.calories : null,
+            fat: food ? food.fat : null,
+            carbs: food ? food.carbs : null
+        };
+    });
 
     const recipe = {
         name,
@@ -120,7 +134,8 @@ document.getElementById("recipe-save").addEventListener("click", saveRecipe);
 
 // Initial load
 addIngredientRow();
-renderRecipeList();;
+renderRecipeList();
+
 
 
 
