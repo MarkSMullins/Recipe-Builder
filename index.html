@@ -22,23 +22,15 @@
     <input id="recipe-name" type="text" class="recipe-input" />
 
     <div class="recipe-row">
-
       <div>
         <label for="recipe-yield">Yield:</label>
-        <div class="recipe-row">
-          <input id="recipe-yield" type="text" class="recipe-input" placeholder="Amount" />
-          <input id="recipe-yield-unit" type="text" class="recipe-input" placeholder="Units" />
-        </div>
+        <input id="recipe-yield" type="text" class="recipe-input" />
       </div>
 
       <div>
         <label for="recipe-prep">Prep Time:</label>
-        <div class="recipe-row">
-          <input id="recipe-prep" type="text" class="recipe-input" placeholder="Amount" />
-          <input id="recipe-prep-unit" type="text" class="recipe-input" placeholder="Units" />
-        </div>
+        <input id="recipe-prep" type="text" class="recipe-input" />
       </div>
-
     </div>
   </section>
 
@@ -74,6 +66,15 @@
 
 </div>
 
+<!-- Food Picker Popup -->
+<div id="food-picker-popup" class="popup">
+  <div class="popup-content">
+    <h3>Select Ingredient</h3>
+    <ul id="food-picker-list"></ul>
+    <button id="food-picker-close" class="close-button">Close</button>
+  </div>
+</div>
+
 <script src="recipe-app.js"></script>
 
 <script>
@@ -86,6 +87,6 @@
 
 </body>
 </html>
-</html>
+
 
 
