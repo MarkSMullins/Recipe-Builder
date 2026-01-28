@@ -1,13 +1,16 @@
+// recipe-app.js
 // ===============================
-// Recipe Builder Logic
+// Recipe Builder with Food Library Picker
 // ===============================
 
-// Load saved recipes
+// LocalStorage
 let recipeLibrary = JSON.parse(localStorage.getItem("recipeLibrary")) || [];
-
 function saveRecipeLibrary() {
     localStorage.setItem("recipeLibrary", JSON.stringify(recipeLibrary));
 }
+
+// Load Food Library from Daily Nutrition Tracker
+let foodLibrary = JSON.parse(localStorage.getItem("foodLibrary")) || [];
 
 // Add ingredient row
 function addIngredientRow() {
@@ -20,25 +23,52 @@ function addIngredientRow() {
         <input type="text" placeholder="Ingredient name" class="recipe-input ingredient-name" />
         <input type="text" placeholder="Unit" class="recipe-input ingredient-unit" />
         <input type="number" placeholder="Amount" class="recipe-input ingredient-amount" />
+        <button class="pick-food-button">Pick</button>
     `;
+
+    // Add event listener for the Pick button
+    row.querySelector(".pick-food-button").addEventListener("click", () => {
+        openFoodPicker(row);
+    });
 
     container.appendChild(row);
 }
 
-// Auto-expand directions textarea
-function autoExpandDirections() {
-    const el = document.getElementById("recipe-directions");
-    el.style.height = "auto";                // Reset height
-    el.style.height = el.scrollHeight + "px"; // Expand to fit content
+// Open Food Picker Popup
+function openFoodPicker(targetRow) {
+    const popup = document.getElementById("food-picker-popup");
+    const list = document.getElementById("food-picker-list");
+
+    list.innerHTML = "";
+
+    foodLibrary.forEach(food => {
+        const li = document.createElement("li");
+        li.textContent = `${food.name} — ${food.calories} cal`;
+
+        li.addEventListener("click", () => {
+            targetRow.querySelector(".ingredient-name").value = food.name;
+            targetRow.querySelector(".ingredient-unit").value = "g";
+            targetRow.querySelector(".ingredient-amount").value = 1;
+
+            popup.classList.remove("visible");
+        });
+
+        list.appendChild(li);
+    });
+
+    popup.classList.add("visible");
 }
+
+// Close popup
+document.getElementById("food-picker-close").addEventListener("click", () => {
+    document.getElementById("food-picker-popup").classList.remove("visible");
+});
 
 // Save recipe
 function saveRecipe() {
     const name = document.getElementById("recipe-name").value.trim();
     const yieldVal = document.getElementById("recipe-yield").value.trim();
-    const yieldUnit = document.getElementById("recipe-yield-unit").value.trim();
     const prep = document.getElementById("recipe-prep").value.trim();
-    const prepUnit = document.getElementById("recipe-prep-unit").value.trim();
     const directions = document.getElementById("recipe-directions").value.trim();
 
     if (!name) {
@@ -55,9 +85,7 @@ function saveRecipe() {
     const recipe = {
         name,
         yield: yieldVal,
-        yieldUnit,
         prep,
-        prepUnit,
         ingredients,
         directions
     };
@@ -90,12 +118,10 @@ function renderRecipeList() {
 document.getElementById("recipe-add-ingredient").addEventListener("click", addIngredientRow);
 document.getElementById("recipe-save").addEventListener("click", saveRecipe);
 
-// Attach auto-expanding behavior
-document.getElementById("recipe-directions").addEventListener("input", autoExpandDirections);
-
 // Initial load
 addIngredientRow();
-renderRecipeList();
+renderRecipeList();;
+
 
 
 
